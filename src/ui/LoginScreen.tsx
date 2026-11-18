@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { accountService, type LoginError } from '../account/accountService';
+import { Emblem } from './Emblem';
 import './shared.css';
 
 const ERROR_MESSAGES: Record<LoginError, string> = {
@@ -37,7 +38,7 @@ export function LoginScreen({ onLoggedIn }: { onLoggedIn: (name: string, sid: st
   return (
     <div className="sl-login-screen">
       <div className="sl-login-card">
-        <div className="sl-login-crest">🍄🏰</div>
+        <div className="sl-login-crest"><Emblem size={56} /></div>
         <h1 className="sl-login-title">SQL Legends</h1>
         <p className="sl-login-sub">Jump, collect coins, and query your way through Database Island.</p>
         <form onSubmit={submit}>

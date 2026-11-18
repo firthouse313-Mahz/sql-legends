@@ -174,9 +174,7 @@ export function PlatformLevel({
             key={coin.id}
             className={`pf-coin${coinsCollected.has(coin.id) ? ' pf-collected' : ''}`}
             style={{ left: coin.x, bottom: coin.y + 40 }}
-          >
-            $
-          </div>
+          />
         ))}
         {layout.questionBlocks.map((block) => (
           <div
@@ -200,8 +198,9 @@ export function PlatformLevel({
           style={{ left: p.x - PLAYER_W / 2, bottom: p.y + 40 }}
         >
           <div className="pf-player-body">
-            <div className="pf-player-cap" />
+            <div className="pf-player-backpack" />
             <div className="pf-player-head" />
+            <div className="pf-player-goggles" />
             <div className="pf-player-torso" />
             <div className="pf-player-leg left" />
             <div className="pf-player-leg right" />

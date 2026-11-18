@@ -56,6 +56,17 @@ export const progressService = {
     return { ...state };
   },
 
+  /** The live state object itself (not a copy) — stable between renders
+   *  until a mutation actually replaces it, which is exactly what
+   *  useSyncExternalStore needs: getSnapshot() above allocates a new
+   *  object every call, which would make React see "changed" on every
+   *  render and loop forever. Every mutation in this module replaces
+   *  `state` wholesale rather than mutating it in place, so this is safe
+   *  to hand out directly. */
+  getStoreState(): ProgressState {
+    return state;
+  },
+
   hydrate(saved: ProgressState | null) {
     if (!saved) return;
     state = { ...defaultState(), ...saved };

@@ -84,6 +84,8 @@
   border-radius: 8px;
 }
 
+/* A plain etched coin, not a dollar sign — "$" reads as a stray US-currency
+   placeholder (and a generic-template tell) rather than a game token. */
 .pf-coin {
   position: absolute;
   width: 26px;
@@ -91,14 +93,15 @@
   border-radius: 999px;
   background: radial-gradient(circle at 35% 30%, #fff6c8, #ffd43b 55%, #e8a400 100%);
   border: 2px solid #c98600;
-  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.2), inset 0 0 0 3px rgba(255, 255, 255, 0.35);
   animation: pf-coin-spin 1.1s ease-in-out infinite;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  font-weight: 800;
-  color: #a86a00;
+}
+.pf-coin::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(168, 106, 0, 0.55);
 }
 .pf-coin.pf-collected { opacity: 0; transform: translateY(-20px) scale(0.5); transition: all 0.25s ease; }
 
@@ -204,25 +207,51 @@
   height: 100%;
   transition: transform 0.05s linear;
 }
+/* "Database Island explorer" — a small adventurer with a field-kit vest
+   and data-goggles, built as an original look for SQL Legends rather than
+   a reskinned generic-platformer-hero template (no borrowed cap+overalls
+   combo). */
 .pf-player-head {
   position: absolute;
-  top: 0;
+  top: 2px;
   left: 6px;
   width: 28px;
   height: 24px;
-  background: #f3c08a;
+  background: #e8b073;
   border-radius: 50% 50% 46% 46%;
   border: 2px solid #8a5a2e;
 }
-.pf-player-cap {
+.pf-player-goggles {
   position: absolute;
-  top: -8px;
-  left: 2px;
-  width: 36px;
-  height: 16px;
-  background: #e8463f;
-  border-radius: 16px 16px 4px 4px;
-  border: 2px solid #9c231d;
+  top: 8px;
+  left: 5px;
+  width: 30px;
+  height: 9px;
+  background: #1c2b3d;
+  border-radius: 5px;
+  box-shadow: 0 0 0 2px #0a1420;
+}
+.pf-player-goggles::before,
+.pf-player-goggles::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  width: 9px;
+  height: 7px;
+  border-radius: 3px;
+  background: radial-gradient(circle at 35% 30%, #aef0ff, #3fd1e0 70%);
+}
+.pf-player-goggles::before { left: 3px; }
+.pf-player-goggles::after { right: 3px; }
+.pf-player-backpack {
+  position: absolute;
+  top: 24px;
+  left: -5px;
+  width: 11px;
+  height: 20px;
+  background: linear-gradient(180deg, #ffce5c, #f5a623);
+  border: 2px solid #a85e00;
+  border-radius: 4px;
 }
 .pf-player-torso {
   position: absolute;
@@ -230,9 +259,19 @@
   left: 2px;
   width: 36px;
   height: 22px;
-  background: #3f6fe0;
+  background: #1c7f78;
   border-radius: 8px;
-  border: 2px solid #233f8e;
+  border: 2px solid #0f4f4a;
+}
+.pf-player-torso::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 14px;
+  width: 8px;
+  height: 8px;
+  border: 2px solid #ffce5c;
+  border-radius: 2px;
 }
 .pf-player-leg {
   position: absolute;

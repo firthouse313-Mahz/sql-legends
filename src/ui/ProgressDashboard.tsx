@@ -1,9 +1,11 @@
+import { useSyncExternalStore } from 'react';
 import { WORLDS } from '../curriculum/worlds';
 import { progressService } from '../progress/progressService';
 import './worldmap.css';
 import './dashboard.css';
 
 export function ProgressDashboard({ studentName, onBack }: { studentName: string; onBack: () => void }) {
+  useSyncExternalStore((onChange) => progressService.subscribe(onChange), () => progressService.getStoreState());
   const overall = progressService.getOverallProgress();
   return (
     <div className="wm-root">

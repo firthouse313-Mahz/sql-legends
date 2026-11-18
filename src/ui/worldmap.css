@@ -16,7 +16,7 @@
   flex-wrap: wrap;
   gap: 8px;
 }
-.wm-brand { font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 20px; }
+.wm-brand { display: flex; align-items: center; gap: 6px; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 20px; }
 .wm-brand span { color: var(--sl-amber); }
 .wm-top-right { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .wm-pathway { display: flex; border-radius: 999px; background: #eef1f7; padding: 2px; }

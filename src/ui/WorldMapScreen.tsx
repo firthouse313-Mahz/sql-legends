@@ -1,6 +1,20 @@
+import { useSyncExternalStore } from 'react';
 import { WORLDS, levelsForPathway, type LevelDef, type WorldDef } from '../curriculum/worlds';
 import { progressService, type LevelStatus } from '../progress/progressService';
+import { Emblem } from './Emblem';
 import './worldmap.css';
+
+// progressService is a plain external store (subscribe/getSnapshot), not
+// React state — it's shared with accountService's backend hydrate and must
+// survive screen changes. useSyncExternalStore is what re-renders this
+// screen when a hydrate() or completeLevel() happens anywhere else in the
+// app, not just when App.tsx's own state changes.
+function useProgressTick() {
+  return useSyncExternalStore(
+    (onChange) => progressService.subscribe(onChange),
+    () => progressService.getStoreState(),
+  );
+}
 
 const WORLD_ACCENTS: Record<string, { a: string; b: string; icon: string }> = {
   'world-1': { a: '#2fae4a', b: '#7de37d', icon: '🏝️' },
@@ -21,13 +35,14 @@ export function WorldMapScreen({
   onPlayBoss: (world: WorldDef) => void;
   onOpenDashboard: () => void;
 }) {
+  useProgressTick();
   const pathway = progressService.getPathway();
   const overall = progressService.getOverallProgress();
 
   return (
     <div className="wm-root">
       <header className="wm-top">
-        <div className="wm-brand">🍄 <span>SQL</span> Legends</div>
+        <div className="wm-brand"><Emblem size={26} /> <span>SQL</span> Legends</div>
         <div className="wm-top-right">
           <div className="wm-pathway">
             {(['cs', 'ip'] as const).map((p) => (
