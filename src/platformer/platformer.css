@@ -1,0 +1,322 @@
+.pf-root {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: linear-gradient(180deg, #4fb3ff 0%, #8fd3ff 38%, #cdeeff 70%, #eafff2 100%);
+  touch-action: none;
+  user-select: none;
+}
+
+.pf-cloud {
+  position: absolute;
+  background: #fff;
+  border-radius: 999px;
+  opacity: 0.9;
+  filter: drop-shadow(0 4px 0 rgba(255, 255, 255, 0.4));
+  animation: pf-drift 40s linear infinite;
+}
+.pf-cloud::before,
+.pf-cloud::after {
+  content: '';
+  position: absolute;
+  background: #fff;
+  border-radius: 999px;
+}
+.pf-cloud::before { width: 55%; height: 140%; top: -40%; left: 10%; }
+.pf-cloud::after { width: 45%; height: 120%; top: -30%; right: 8%; }
+
+@keyframes pf-drift {
+  from { transform: translateX(0); }
+  to { transform: translateX(-60px); }
+}
+
+.pf-world {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  will-change: transform;
+}
+
+.pf-ground {
+  position: absolute;
+  bottom: 0;
+  background:
+    linear-gradient(180deg, #6fdc6f 0%, #4cbf4c 55%, #3a9c3a 100%);
+  border-top: 6px solid #3f8f3f;
+  box-shadow: inset 0 -14px 0 rgba(0, 0, 0, 0.08);
+}
+.pf-ground::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.35) 2px, transparent 2px);
+  background-size: 26px 26px;
+  background-position: 0 6px;
+  opacity: 0.5;
+}
+
+.pf-platform {
+  position: absolute;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #7de37d 0%, #4cbf4c 60%, #a9683a 60%, #8a5330 100%);
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.15), inset 0 2px 0 rgba(255, 255, 255, 0.4);
+}
+
+.pf-pipe {
+  position: absolute;
+  bottom: 40px;
+  width: 64px;
+  background: linear-gradient(90deg, #2fae4a 0%, #3fd166 25%, #2fae4a 55%, #1f8f3b 100%);
+  border: 3px solid #176b2c;
+  border-radius: 8px 8px 0 0;
+}
+.pf-pipe::before {
+  content: '';
+  position: absolute;
+  top: -14px;
+  left: -8px;
+  right: -8px;
+  height: 22px;
+  background: linear-gradient(90deg, #2fae4a 0%, #45df6c 30%, #2fae4a 65%, #1f8f3b 100%);
+  border: 3px solid #176b2c;
+  border-radius: 8px;
+}
+
+.pf-coin {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 35% 30%, #fff6c8, #ffd43b 55%, #e8a400 100%);
+  border: 2px solid #c98600;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.2);
+  animation: pf-coin-spin 1.1s ease-in-out infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 800;
+  color: #a86a00;
+}
+.pf-coin.pf-collected { opacity: 0; transform: translateY(-20px) scale(0.5); transition: all 0.25s ease; }
+
+@keyframes pf-coin-spin {
+  0%, 100% { transform: scaleX(1) translateY(0); }
+  50% { transform: scaleX(0.25) translateY(-4px); }
+}
+
+.pf-qblock {
+  position: absolute;
+  width: 46px;
+  height: 46px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #ffd34d 0%, #f5a623 100%);
+  border: 3px solid #a85e00;
+  box-shadow: 0 5px 0 rgba(0, 0, 0, 0.2), inset 0 2px 0 rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 900;
+  color: #7a3e00;
+  cursor: pointer;
+  animation: pf-qblock-bob 1.8s ease-in-out infinite;
+}
+.pf-qblock:hover { filter: brightness(1.08); }
+.pf-qblock.pf-solved {
+  background: linear-gradient(180deg, #c9c9c9 0%, #9b9b9b 100%);
+  border-color: #6b6b6b;
+  color: #4a4a4a;
+  animation: none;
+  cursor: default;
+}
+@keyframes pf-qblock-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.pf-castle {
+  position: absolute;
+  bottom: 40px;
+  width: 170px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.pf-castle-tower {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  background: linear-gradient(180deg, #e7e2d6 0%, #c9c2ae 100%);
+  border: 3px solid #8d8468;
+  border-radius: 6px 6px 0 0;
+}
+.pf-castle-tower::before {
+  content: '';
+  position: absolute;
+  top: -16px;
+  left: 0;
+  right: 0;
+  height: 16px;
+  background: repeating-linear-gradient(90deg, #c9c2ae 0 18px, transparent 18px 28px);
+}
+.pf-castle-door {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 68px;
+  border-radius: 24px 24px 0 0;
+  background: #5a3b22;
+  border: 3px solid #3c2515;
+}
+.pf-castle-door.pf-open {
+  background: #1a0f08;
+  box-shadow: inset 0 0 18px 4px #000;
+}
+.pf-castle-flag {
+  width: 4px;
+  height: 36px;
+  background: #8d8468;
+}
+.pf-castle-flag::after {
+  content: '';
+  position: absolute;
+  width: 26px;
+  height: 18px;
+  background: #ff5252;
+  clip-path: polygon(0 0, 100% 20%, 0 100%);
+  margin-top: -36px;
+  margin-left: 4px;
+}
+
+.pf-player {
+  position: absolute;
+  width: 40px;
+  height: 54px;
+}
+.pf-player-body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.05s linear;
+}
+.pf-player-head {
+  position: absolute;
+  top: 0;
+  left: 6px;
+  width: 28px;
+  height: 24px;
+  background: #f3c08a;
+  border-radius: 50% 50% 46% 46%;
+  border: 2px solid #8a5a2e;
+}
+.pf-player-cap {
+  position: absolute;
+  top: -8px;
+  left: 2px;
+  width: 36px;
+  height: 16px;
+  background: #e8463f;
+  border-radius: 16px 16px 4px 4px;
+  border: 2px solid #9c231d;
+}
+.pf-player-torso {
+  position: absolute;
+  top: 22px;
+  left: 2px;
+  width: 36px;
+  height: 22px;
+  background: #3f6fe0;
+  border-radius: 8px;
+  border: 2px solid #233f8e;
+}
+.pf-player-leg {
+  position: absolute;
+  bottom: 0;
+  width: 13px;
+  height: 14px;
+  background: #2a2a2a;
+  border-radius: 3px;
+}
+.pf-player-leg.left { left: 5px; }
+.pf-player-leg.right { right: 5px; }
+.pf-player.pf-running .pf-player-leg.left { animation: pf-leg-run 0.3s linear infinite; }
+.pf-player.pf-running .pf-player-leg.right { animation: pf-leg-run 0.3s linear infinite reverse; }
+@keyframes pf-leg-run {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-2px) rotate(14deg); }
+}
+.pf-player.pf-air .pf-player-body { transform: rotate(-6deg); }
+.pf-player.pf-facing-left .pf-player-body { transform: scaleX(-1); }
+
+.pf-hud {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  z-index: 5;
+  pointer-events: none;
+}
+.pf-hud-chip {
+  pointer-events: auto;
+  background: rgba(10, 20, 40, 0.55);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-weight: 700;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.pf-controls {
+  position: absolute;
+  bottom: 14px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 14px;
+  z-index: 5;
+}
+.pf-dpad, .pf-jumpzone { display: flex; gap: 10px; }
+.pf-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0a2440;
+  touch-action: none;
+  user-select: none;
+}
+.pf-btn:active { background: rgba(255, 255, 255, 0.85); }
+.pf-btn-jump {
+  width: 72px;
+  height: 72px;
+  border-radius: 999px;
+  background: rgba(245, 166, 35, 0.75);
+  border-color: rgba(255, 255, 255, 0.9);
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pf-controls { display: none; }
+}

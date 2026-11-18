@@ -1,0 +1,11 @@
+.db-stats { display: flex; gap: 14px; padding: 18px; flex-wrap: wrap; justify-content: center; }
+.db-stat { background: #fff; border-radius: 16px; padding: 16px 22px; text-align: center; box-shadow: 0 4px 14px rgba(0,0,0,0.08); min-width: 120px; }
+.db-stat-num { display: block; font-size: 22px; font-weight: 800; color: var(--sl-ink); }
+.db-stat span:last-child { font-size: 12px; color: #6a7692; font-weight: 700; }
+.db-worlds { max-width: 700px; margin: 0 auto; padding: 0 18px; display: flex; flex-direction: column; gap: 10px; }
+.db-world-row { display: flex; align-items: center; gap: 10px; background: #fff; border-radius: 12px; padding: 10px 14px; font-size: 13px; font-weight: 700; color: var(--sl-ink); }
+.db-world-name { min-width: 150px; }
+.db-world-bar { flex: 1; height: 8px; background: #e1e6ef; border-radius: 999px; overflow: hidden; }
+.db-world-fill { height: 100%; background: linear-gradient(90deg, var(--sl-green), #8fe08f); }
+.db-world-count { min-width: 60px; text-align: right; color: #6a7692; }
+.db-world-badge { width: 20px; text-align: center; }
